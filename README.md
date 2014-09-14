@@ -7,6 +7,7 @@ il s'agit d'une simple réécriture de la version [python](https://github.com/GH
 
 * Perl >= 5.8.3
 * IO::Socket::Socks
+* IO::Socket::SSL
 * IO::Socket
 
 ## Utilisation

@@ -25,6 +25,7 @@
 ##################################################################################
 
 use IO::Socket::Socks;
+use IO::Socket::SSL;
 use IO::Socket;
 use threads;
 use strict;
@@ -41,11 +42,12 @@ while ($server = $server->accept()) {
     $server->autoflush(1);
     print $server "Connexion en cours\n";
     print $server "Dogecoin: DMP3meY5fy2ydX45qyXoexw1oLKkSpJYbG\n";
-    my $tsock = new IO::Socket::Socks(ProxyAddr=>"127.0.0.1",
+    my $tsock = new IO::Socket::Socks->new(ProxyAddr=>"127.0.0.1",
                                         ProxyPort=>"9050",
                                         ConnectAddr=>"oghzthm3fgvkh5wo.onion",
-                                        ConnectPort=>"6667",
+                                        ConnectPort=>"6697",
                                     );
+    IO::Socket::SSL->start_SSL($tsock) or die "Erreur: $SSL_ERROR";
     sub recvserv{
         while(<$server>) {
             if($tsock){
